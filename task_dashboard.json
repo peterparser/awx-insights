@@ -337,7 +337,7 @@
           "table": "job"
         }
       ],
-      "title": "Job average duration in seconds",
+      "title": "Job average duration in minutes",
       "type": "barchart"
     },
     {
@@ -667,13 +667,13 @@
     "list": []
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "AAP-INSIGHTS",
   "uid": "ibVTBd1Vk",
-  "version": 22,
+  "version": 23,
   "weekStart": ""
 }
