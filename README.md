@@ -17,10 +17,12 @@ For running and properly exploit this application you need:
 ## What I have already prepared for you
 * A grafana dashboard that can show you some insightful data about your automations and how much time you are saving by automating that task.
 * Ansible automations to update the database with some informations (like how much time you spend for task in a manual manner).
-* Tekton pipelines that used to build and test the code
+* Tekton pipelines that used to build the container image for this applciations
 
 ## What you have to do
 WIP
+
+## Dashboards examples
 
 
 Enjoy
