@@ -20,9 +20,12 @@ For running and properly exploit this application you need:
 * Tekton pipelines that used to build the container image for this applciations
 
 ## What you have to do
-WIP
+All you need to do is to configure the connection to the PostgreSQL database by passing the following environment variables to the application:
+* QUARKUS_DATASOURCE_DB-KIND: postgresql 
+* QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://<dbhost>:<dbport>/<dbname>
+* QUARKUS_DATASOURCE_USERNAME: <dbusername>
+* QUARKUS_DATASOURCE_PASSWORD: <dbpassword>
 
 ## Dashboards examples
-
 
 Enjoy
