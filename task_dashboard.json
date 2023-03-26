@@ -198,7 +198,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT name AS Job_Name, COUNT(name) FROM job GROUP BY name LIMIT 50 ",
+          "rawSql": "SELECT name AS Job_Name, COUNT(name) FROM job GROUP BY name ORDER BY COUNT(name) DESC",
           "refId": "A",
           "sql": {
             "columns": [
@@ -315,7 +315,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT name as job_name, AVG(elapsed) as duration\r\nFROM job\r\nWHERE finished >= '${__from:date:YYYY-MM-DD} 01:00' AND finished <= '${__to:date:YYYY-MM-DD} 01:00'\r\nGROUP BY name",
+          "rawSql": "SELECT name as job_name, AVG(elapsed) / 60 as duration\r\nFROM job\r\nWHERE finished >= '${__from:date:YYYY-MM-DD} 01:00' AND finished <= '${__to:date:YYYY-MM-DD} 01:00'\r\nGROUP BY name\r\nORDER by AVG(elapsed) DESC",
           "refId": "A",
           "sql": {
             "columns": [
@@ -451,16 +451,7 @@
               "mode": "off"
             }
           },
-          "mappings": [
-            {
-              "options": {
-                "successful": {
-                  "index": 0
-                }
-              },
-              "type": "value"
-            }
-          ],
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -471,7 +462,35 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "status"
+            },
+            "properties": [
+              {
+                "id": "custom.axisColorMode",
+                "value": "text"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "count"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -482,7 +501,7 @@
       "id": 8,
       "options": {
         "barRadius": 0,
-        "barWidth": 0.37,
+        "barWidth": 0.56,
         "groupWidth": 0.7,
         "legend": {
           "calcs": [],
@@ -490,7 +509,7 @@
           "placement": "bottom",
           "showLegend": true
         },
-        "orientation": "horizontal",
+        "orientation": "auto",
         "showValue": "auto",
         "stacking": "none",
         "tooltip": {
@@ -509,7 +528,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT status, COUNT(status) \r\nfrom job\r\nWHERE finished >= '${__from:date:YYYY-MM-DD} 01:00' AND finished <= '${__to:date:YYYY-MM-DD} 01:00'\r\nGROUP BY status\r\n",
+          "rawSql": "SELECT status, COUNT(status) \r\nfrom job\r\nWHERE finished >= '${__from:date:YYYY-MM-DD} 01:00' AND finished <= '${__to:date:YYYY-MM-DD} 01:00'\r\nGROUP BY status\r\nORDER BY COUNT(status) DESC\r\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -648,13 +667,13 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "AAP-INSIGHTS",
   "uid": "ibVTBd1Vk",
-  "version": 17,
+  "version": 22,
   "weekStart": ""
 }
